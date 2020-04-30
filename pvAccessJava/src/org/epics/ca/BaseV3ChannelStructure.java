@@ -166,6 +166,9 @@ public class BaseV3ChannelStructure implements V3ChannelStructure {
             if(nativeDBRType!=DBRType.ENUM) {
                 propertyList.add("display");
                 propertyList.add("control");
+                if (nativeDBRType != DBRType.STRING) {
+                    propertyList.add("valueAlarm");
+                }
             }
         }
         for(int indField = 0; indField<pvFields.length; indField++) {
@@ -184,6 +187,10 @@ public class BaseV3ChannelStructure implements V3ChannelStructure {
             }
             if(pvField.getFieldName().equals("control")) {
                 if(propertiesAllowed && nativeDBRType!=DBRType.ENUM) propertyList.add("control");
+                continue;
+            }
+            if(pvField.getFieldName().equals("valueAlarm")) {
+                if(propertiesAllowed && nativeDBRType!=DBRType.STRING && nativeDBRType!=DBRType.ENUM) propertyList.add("valueAlarm");
                 continue;
             }
             if(!pvField.getFieldName().equals("value")) {
@@ -237,6 +244,10 @@ public class BaseV3ChannelStructure implements V3ChannelStructure {
                     continue;
                 }
                 if(propertyName.equals("control")&& (dbrProperty.compareTo(DBRProperty.control)<0)) {
+                    dbrProperty = DBRProperty.control;
+                    continue;
+                }
+                if(propertyName.equals("valueAlarm")&& (dbrProperty.compareTo(DBRProperty.control)<0)) {
                     dbrProperty = DBRProperty.control;
                     continue;
                 }
@@ -451,6 +462,12 @@ public class BaseV3ChannelStructure implements V3ChannelStructure {
         double displayHigh = 0.0;
         double controlLow = 0.0;
         double controlHigh = 0.0;
+       
+        double lowAlarmLimit = 0.0;
+        double lowWarningLimit = 0.0;
+        double highWarningLimit = 0.0;
+        double highAlarmLimit = 0.0;
+
         String units = null;
         bitSet.clear();
         DBRType requestDBRType = fromDBR.getType();
@@ -677,6 +694,12 @@ public class BaseV3ChannelStructure implements V3ChannelStructure {
                 displayHigh = dbr.getUpperDispLimit().doubleValue();
                 controlLow = dbr.getLowerCtrlLimit().doubleValue();
                 controlHigh = dbr.getUpperCtrlLimit().doubleValue();
+
+                lowAlarmLimit = dbr.getLowerAlarmLimit().doubleValue();
+                lowWarningLimit = dbr.getLowerWarningLimit().doubleValue();
+                highWarningLimit = dbr.getUpperWarningLimit().doubleValue();
+                highAlarmLimit = dbr.getUpperAlarmLimit().doubleValue();
+
                 if(elementCount==1) {
                     convert.fromByte(pvScalarValue, dbr.getByteValue()[0]);
                 } else {
@@ -718,7 +741,13 @@ public class BaseV3ChannelStructure implements V3ChannelStructure {
                 displayLow = dbr.getLowerDispLimit().doubleValue();
                 displayHigh = dbr.getUpperDispLimit().doubleValue();
                 controlLow = dbr.getLowerCtrlLimit().doubleValue();
-                controlHigh = dbr.getUpperCtrlLimit().doubleValue();
+                controlHigh = dbr.getUpperCtrlLimit().doubleValue();                
+
+                lowAlarmLimit = dbr.getLowerAlarmLimit().doubleValue();
+                lowWarningLimit = dbr.getLowerWarningLimit().doubleValue();
+                highWarningLimit = dbr.getUpperWarningLimit().doubleValue();
+                highAlarmLimit = dbr.getUpperAlarmLimit().doubleValue();
+                
                 if(elementCount==1) {
                     convert.fromShort(pvScalarValue, dbr.getShortValue()[0]);
                 } else {
@@ -760,7 +789,13 @@ public class BaseV3ChannelStructure implements V3ChannelStructure {
                 displayLow = dbr.getLowerDispLimit().doubleValue();
                 displayHigh = dbr.getUpperDispLimit().doubleValue();
                 controlLow = dbr.getLowerCtrlLimit().doubleValue();
-                controlHigh = dbr.getUpperCtrlLimit().doubleValue();
+                controlHigh = dbr.getUpperCtrlLimit().doubleValue();                
+
+                lowAlarmLimit = dbr.getLowerAlarmLimit().doubleValue();
+                lowWarningLimit = dbr.getLowerWarningLimit().doubleValue();
+                highWarningLimit = dbr.getUpperWarningLimit().doubleValue();
+                highAlarmLimit = dbr.getUpperAlarmLimit().doubleValue();
+                
                 if(elementCount==1) {
                     convert.fromInt(pvScalarValue, dbr.getIntValue()[0]);
                 } else {
@@ -802,7 +837,13 @@ public class BaseV3ChannelStructure implements V3ChannelStructure {
                 displayLow = dbr.getLowerDispLimit().doubleValue();
                 displayHigh = dbr.getUpperDispLimit().doubleValue();
                 controlLow = dbr.getLowerCtrlLimit().doubleValue();
-                controlHigh = dbr.getUpperCtrlLimit().doubleValue();
+                controlHigh = dbr.getUpperCtrlLimit().doubleValue();                
+
+                lowAlarmLimit = dbr.getLowerAlarmLimit().doubleValue();
+                lowWarningLimit = dbr.getLowerWarningLimit().doubleValue();
+                highWarningLimit = dbr.getUpperWarningLimit().doubleValue();
+                highAlarmLimit = dbr.getUpperAlarmLimit().doubleValue();
+                
                 if(elementCount==1) {
                     convert.fromFloat(pvScalarValue, dbr.getFloatValue()[0]);
                 } else {
@@ -845,6 +886,12 @@ public class BaseV3ChannelStructure implements V3ChannelStructure {
                 displayHigh = dbr.getUpperDispLimit().doubleValue();
                 controlLow = dbr.getLowerCtrlLimit().doubleValue();
                 controlHigh = dbr.getUpperCtrlLimit().doubleValue();
+
+                lowAlarmLimit = dbr.getLowerAlarmLimit().doubleValue();
+                lowWarningLimit = dbr.getLowerWarningLimit().doubleValue();
+                highWarningLimit = dbr.getUpperWarningLimit().doubleValue();
+                highAlarmLimit = dbr.getUpperAlarmLimit().doubleValue();
+                
                 if(elementCount==1) {
                     convert.fromDouble(pvScalarValue, dbr.getDoubleValue()[0]);
                 } else {
@@ -941,6 +988,25 @@ public class BaseV3ChannelStructure implements V3ChannelStructure {
                 }
             }
         }
+
+        if (lowAlarmLimit < highAlarmLimit || lowWarningLimit < highWarningLimit) {
+            pvStructure = this.pvStructure.getStructureField("valueAlarm");
+            if (pvStructure != null) {
+                PVDouble pvLowWarning = pvStructure.getDoubleField("lowWarningLimit");
+                PVDouble pvHighWarning = pvStructure.getDoubleField("highWarningLimit");
+                if (pvLowWarning != null && pvHighWarning != null) {
+                    pvLowWarning.put(lowWarningLimit);
+                    pvHighWarning.put(highWarningLimit);
+                }
+                PVDouble pvLowAlarm = pvStructure.getDoubleField("lowAlarmLimit");
+                PVDouble pvHighAlarm = pvStructure.getDoubleField("highAlarmLimit");
+                if (pvLowAlarm != null && pvHighAlarm != null) {
+                    pvLowAlarm.put(lowAlarmLimit);
+                    pvHighAlarm.put(highAlarmLimit);
+                }
+            }
+        }
+        
         if(firstGetPVStructure.getAndSet(false)) {
             bitSet.clear();
             bitSet.set(0);
