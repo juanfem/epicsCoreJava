@@ -962,7 +962,7 @@ public class BaseV3ChannelStructure implements V3ChannelStructure {
             if(pvStructure!=null) {
                     PVString pvUnits = pvStructure.getStringField("units");
                     if(pvUnits!=null) {
-                        pvUnits.put(units.toString());
+                        pvUnits.put(units);
                     }
                 }
         }
