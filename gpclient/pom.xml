@@ -5,10 +5,10 @@
   <name>gpclient</name>
   <parent>
     <groupId>org.epics</groupId>
-    <artifactId>epics-parent</artifactId>
-    <version>7.0.6.1-SNAPSHOT</version>
+    <artifactId>epics-parent</artifactId>    
+    <version>7.0.7.1-SNAPSHOT</version>
   </parent>
-  <version>1.0.3-SNAPSHOT</version>
+  <version>1.0.4-SNAPSHOT</version>
   <packaging>pom</packaging>
   <description>The generic purpose JAVA EPICS client.</description>
   <properties>
