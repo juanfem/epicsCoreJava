@@ -28,4 +28,4 @@ publish:
     <<: *maven
     stage: deploy
     script:
-        - 'mvn $MAVEN_CLI_OPTS deploy -DskipTests -Dmaven.javadoc.skip=true -Dartifactory.username=${ARTIFACTORY_USERNAME} -Dartifactory.password=${ARTIFACTORY_PASSWORD}'
+        - 'mvn $MAVEN_CLI_OPTS deploy -DskipTests -Dartifactory.username=${ARTIFACTORY_USERNAME} -Dartifactory.password=${ARTIFACTORY_PASSWORD}'
