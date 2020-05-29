@@ -3,7 +3,7 @@
 
     <groupId>org.epics</groupId>
     <artifactId>epics-parent</artifactId>
-    <version>7.0.7.1-SNAPSHOT</version>
+    <version>7.0.7.1</version>
     <packaging>pom</packaging>
 
     <name>EPICS Core Build</name>
@@ -12,10 +12,10 @@
 
     <properties>
         <!-- Matching versions of Core modules -->
-        <epics-util.version>1.0.4-SNAPSHOT</epics-util.version>
-        <epics-pvdata.version>6.1.6-SNAPSHOT</epics-pvdata.version>
-        <epics-ntypes.version>0.3.6-SNAPSHOT</epics-ntypes.version>
-        <epics-pvaccess.version>5.1.6-SNAPSHOT</epics-pvaccess.version>
+        <epics-util.version>1.0.4.1</epics-util.version>
+        <epics-pvdata.version>6.1.6.1</epics-pvdata.version>
+        <epics-ntypes.version>0.3.6.1</epics-ntypes.version>
+        <epics-pvaccess.version>5.1.6.1</epics-pvaccess.version>
         <jca.version>2.4.5</jca.version>
         <!-- Versions of examples bundled with Core -->
         <!-- Name of javadoc overview page -->
