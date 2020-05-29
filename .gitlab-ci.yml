@@ -9,14 +9,14 @@ build.maven:
     <<: *maven
     stage: build
     script:
-        - 'mvn $MAVEN_CLI_OPTS -DskipTests -Dmaven.javadoc.skip=true install'
+        - 'mvn $MAVEN_CLI_OPTS -DskipTests install'
 
 test:
     <<: *maven
     stage: test
     script:
         - 'export EPICS_PVA_ADDR_LIST=127.255.255.255'
-        - 'mvn $MAVEN_CLI_OPTS verify -Dmaven.javadoc.skip=true -fn | tee std.out'
+        - 'mvn $MAVEN_CLI_OPTS verify -fn | tee std.out'
         - '! grep "Build failures were ignored" std.out'
     artifacts:
         reports:

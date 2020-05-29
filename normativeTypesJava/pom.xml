@@ -28,5 +28,9 @@
             <groupId>${project.groupId}</groupId>
             <artifactId>epics-pvdata</artifactId>
         </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>epics-util</artifactId>
+        </dependency>
     </dependencies>
 </project>
