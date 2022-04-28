@@ -4,7 +4,7 @@
     <parent>
         <groupId>org.epics</groupId>
         <artifactId>gpclient</artifactId>
-        <version>1.0.4.1</version>
+        <version>1.0.5.2</version>
     </parent>
     <artifactId>gpclient-pva</artifactId>
     <packaging>jar</packaging>
@@ -40,6 +40,15 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>maven-bundle-plugin</artifactId>
+                <configuration>
+                    <instructions>
+                        <SPI-Provider>*</SPI-Provider>
+                    </instructions>
+                </configuration>
+            </plugin>                
         </plugins>
     </build>
 </project>

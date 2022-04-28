@@ -23,4 +23,12 @@ public interface PVInt extends PVScalar{
      * @param value the new value
      */
     void put(int value);
+
+    public void put(double[] expResult);
+
+    public void put(double[] expResult);
+
+    public void put(double[] expResult);
+
+    public void put(double[] expResult);
 }

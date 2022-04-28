@@ -4,16 +4,29 @@
     <parent>
         <groupId>org.epics</groupId>
         <artifactId>gpclient</artifactId>
-        <version>1.0.4.1</version>
+        <version>1.0.5.2</version>
     </parent>
     <artifactId>gpclient-core</artifactId>
     <name>org.epics.gpclient</name>
     <description>The main library for the generic purpose JAVA EPICS client.</description>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>maven-bundle-plugin</artifactId>
+                <configuration>
+                    <instructions>
+                    <SPI-Consumer>*</SPI-Consumer>
+                    </instructions>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>       
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>vtype</artifactId>
-            <version>${project.version}</version>
+            <version>${epics-vtype.version}</version>
         </dependency>
     </dependencies>
 </project>

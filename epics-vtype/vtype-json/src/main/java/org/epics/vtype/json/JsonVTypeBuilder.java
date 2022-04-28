@@ -8,9 +8,11 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.sql.Timestamp;
 import java.util.List;
+import java.util.Collections;
 import javax.json.Json;
 import javax.json.JsonArrayBuilder;
 import javax.json.JsonObject;
+import javax.json.JsonBuilderFactory;
 import javax.json.JsonObjectBuilder;
 import javax.json.JsonValue;
 import static org.epics.vtype.json.JsonArrays.*;
@@ -31,8 +33,9 @@ import org.epics.vtype.VType;
  * @author carcassi
  */
 class JsonVTypeBuilder implements JsonObjectBuilder {
-    
-    private final JsonObjectBuilder builder = Json.createObjectBuilder();
+
+    public static final JsonBuilderFactory factory = Json.createBuilderFactory(Collections.emptyMap());
+    private final JsonObjectBuilder builder = factory.createObjectBuilder();
 
     @Override
     public JsonVTypeBuilder add(String string, JsonValue jv) {
@@ -158,7 +161,7 @@ class JsonVTypeBuilder implements JsonObjectBuilder {
     }
     
     public JsonVTypeBuilder addListColumnType(String string, List<Class<?>> ls) {
-        JsonArrayBuilder b = Json.createArrayBuilder();
+        JsonArrayBuilder b = factory.createArrayBuilder();
         for (Class<?> element : ls) {
             if (element.equals(String.class)) {
                 b.add("String");
@@ -190,7 +193,7 @@ class JsonVTypeBuilder implements JsonObjectBuilder {
     }
     
     public JsonVTypeBuilder addListBoolean(String string, ListBoolean lb) {
-        JsonArrayBuilder b = Json.createArrayBuilder();
+        JsonArrayBuilder b = factory.createArrayBuilder();
         for (int i = 0; i < lb.size(); i++) {
             b.add(lb.getBoolean(i));
         }
