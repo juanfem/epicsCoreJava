@@ -12,7 +12,8 @@
 
     <properties>
         <!-- Matching versions of Core modules -->
-        <epics-util.version>1.0.4.2</epics-util.version>
+        <epics-util.version>1.0.5.2</epics-util.version>
+        <epics-vtype.version>1.0.5.2</epics-vtype.version>
         <epics-pvdata.version>6.1.6.2</epics-pvdata.version>
         <epics-ntypes.version>0.3.6.2</epics-ntypes.version>
         <epics-pvaccess.version>5.1.6.2</epics-pvaccess.version>
