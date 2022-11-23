@@ -3,12 +3,12 @@
 
     <parent>
         <groupId>org.epics</groupId>
-        <artifactId>epics-parent</artifactId>      
-        <version>7.0.7.2</version>
+        <artifactId>epics-parent</artifactId>
+        <version>7.0.8.1</version>
     </parent>
 
     <artifactId>epics-ntypes</artifactId>
-    <version>0.3.6.2</version>
+    <version>0.3.7.1</version>
 
     <name>normativeTypesJava</name>
     <url>https://github.com/epics-base/normativeTypesJava</url>

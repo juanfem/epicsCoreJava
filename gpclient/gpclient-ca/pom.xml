@@ -3,7 +3,7 @@
   <parent>
     <groupId>org.epics</groupId>
     <artifactId>gpclient</artifactId>
-    <version>1.0.5.2</version>
+    <version>1.0.6.1</version>
   </parent>
   <artifactId>gpclient-ca</artifactId>
   <packaging>jar</packaging>
@@ -13,6 +13,7 @@
     <dependency>
       <groupId>org.epics</groupId>
       <artifactId>jca</artifactId>
+      <version>${jca.version}</version>
       </dependency>
     <dependency>
       <groupId>${project.groupId}</groupId>

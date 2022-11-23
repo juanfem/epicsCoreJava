@@ -5,10 +5,10 @@
   <name>gpclient</name>
   <parent>
     <groupId>org.epics</groupId>
-    <artifactId>epics-parent</artifactId>    
-    <version>7.0.7.2</version>
+    <artifactId>epics-parent</artifactId>
+    <version>7.0.8.1</version>
   </parent>
-  <version>1.0.5.2</version>
+  <version>1.0.6.1</version>
   <packaging>pom</packaging>
   <description>The generic purpose JAVA EPICS client.</description>
   <properties>
@@ -50,19 +50,6 @@
         </executions>
       </plugin>
       <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-javadoc-plugin</artifactId>
-        <version>2.10.4</version>
-        <executions>
-          <execution>
-            <id>attach-javadocs</id>
-            <goals>
-              <goal>jar</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-      <plugin>
         <groupId>com.mycila</groupId>
         <artifactId>license-maven-plugin</artifactId>
         <version>3.0</version>
@@ -93,11 +80,6 @@
     </plugins>
   </reporting>
   <dependencies>
-    <dependency>
-      <groupId>${project.groupId}</groupId>
-      <artifactId>epics-util</artifactId>
-      <version>${epics-util.version}</version>
-    </dependency>
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>

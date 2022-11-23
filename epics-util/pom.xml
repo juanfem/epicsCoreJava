@@ -7,7 +7,7 @@
     <parent>
         <groupId>org.epics</groupId>
         <artifactId>epics-parent</artifactId>
-        <version>7.0.7.2</version>
+        <version>7.0.8.1</version>
     </parent>
     <description>Basic Java utility classes to be shared across projects until
         suitable replacements are available in the JDK.</description>
