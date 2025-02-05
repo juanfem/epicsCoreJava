@@ -4,6 +4,8 @@ variables:
     
 .maven: &maven
     image: registry.esss.lu.se/ics-docker/maven:openjdk-8
+    tags:
+      - docker
 
 build.maven:
     <<: *maven
